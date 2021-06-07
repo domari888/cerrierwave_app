@@ -57,6 +57,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # ファイルの形式を jpg 変換
   process convert: "jpg"
 
+  # 画像サイズを変更 (縦幅:200px, 横幅:300px)
+  process resize_to_limit: [200, 300]
+
   # 投稿した画像のファイル名をランダムに変更し保存
   # def filename
   #   "#{secure_token}.#{file.extension}" if original_filename.present?
