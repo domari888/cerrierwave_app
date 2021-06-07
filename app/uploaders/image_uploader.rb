@@ -35,9 +35,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_allowlist
-  #   %w(jpg jpeg gif png)
-  # end
+
+  # 投稿可能なファイル形式を制限
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
