@@ -54,15 +54,23 @@ class ImageUploader < CarrierWave::Uploader::Base
     0..5.megabytes
   end
 
+  # ファイルの形式を jpg 変換
+  process convert: "jpg"
+
   # 投稿した画像のファイル名をランダムに変更し保存
+  # def filename
+  #   "#{secure_token}.#{file.extension}" if original_filename.present?
+  # end
+
+  # ファイル名の拡張子を jpg に変更
   def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
+    super.chomp(File.extname(super)) + ".jpg" if original_filename.present?
   end
 
-  protected
+  # protected
 
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
-  end
+  # def secure_token
+  #   var = :"@#{mounted_as}_secure_token"
+  #   model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  # end
 end
