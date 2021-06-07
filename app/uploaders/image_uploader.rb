@@ -46,4 +46,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  # 投稿可能なファイルサイズの上限を5MBに制限
+  def size_range
+    0..5.megabytes
+  end
 end
